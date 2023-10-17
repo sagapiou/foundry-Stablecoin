@@ -35,29 +35,8 @@ ifeq ($(findstring --network sepolia,$(ARGS)),--network sepolia)
 endif
 
 # if we pass --network sepolia the make deploy
-deploy-hero:
-	forge script script/DeployHeroNft.s.sol:DeployHeroNft $(NETWORK_ARGS)
+deploy-anvil:
+	forge script script/DeployDSC.s.sol:DeployDSC --rpc-url $(RPC_URL_LOCAL) --broadcast --private-key $(PRIVATE_KEY_LOCAL) 
 
-deploy-mood:
-	forge script script/DeployMoodNft.s.sol:DeployMoodNft $(NETWORK_ARGS)
-
-mood-mint:
-	forge script script/Interactions.s.sol:MintMoodNft $(NETWORK_ARGS)
-
-mood-flip:
-	forge script script/Interactions.s.sol:FlipMoodNft $(NETWORK_ARGS)
-
-deploy-hero-anvil:
-	forge script script/DeployHeroNft.s.sol:DeployHeroNft --rpc-url $(RPC_URL_LOCAL) --broadcast --private-key $(PRIVATE_KEY_LOCAL) 
-
-mint-anvil:
-	gorge script script/Interactions.s.sol:MintHeroNft --rpc-url $(RPC_URL_LOCAL) --broadcast --private-key $(PRIVATE_KEY_LOCAL)
-
-deploy-hero-sepolia:
-	forge script script/DeployHeroNft.s.sol:DeployHeroNft --rpc-url $(RPC_SEPOLIA2) --private-key ${PRIVATE_KEY_SEPOLIA} --broadcast -vvvv
-
-deploy-hero-sepolia-verify:
-	forge script script/DeployHeroNft.s.sol:DeployHeroNft --rpc-url $(RPC_SEPOLIA2) --private-key $(PRIVATE_KEY_SEPOLIA) --broadcast --verify --etherscan-api-key $(ETHERSCAN_API_KEY) -vvvv
-
-deploy-mood-sepolia-verify:
-	forge script script/DeployMoodNft.s.sol:DeployMoodNft --rpc-url $(RPC_SEPOLIA2) --private-key $(PRIVATE_KEY_SEPOLIA) --broadcast --verify --etherscan-api-key $(ETHERSCAN_API_KEY) -vvvv
+deploy-sepolia-verify:
+	forge script script/DeployDSC.s.sol:DeployDSC --rpc-url $(RPC_SEPOLIA2) --private-key $(PRIVATE_KEY_SEPOLIA) --broadcast --verify --etherscan-api-key $(ETHERSCAN_API_KEY) -vvvv
