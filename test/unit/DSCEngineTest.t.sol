@@ -527,10 +527,19 @@ contract DSCEngineTest is StdCheats, Test {
 
     function testGetCollateralBalanceOfUser() public {
         vm.startPrank(user);
+        console.log("-------:", ERC20Mock(weth).allowance(user, address(dsce)));
         ERC20Mock(weth).approve(address(dsce), amountCollateral);
+        console.log("0000000:", ERC20Mock(weth).allowance(user, address(dsce)));
+
+        console.log("1111111:", ERC20Mock(weth).balanceOf(user));
+
+        console.log("2222222:",amountCollateral, weth);
+        console.log(ERC20Mock(weth).balanceOf(user));
         dsce.depositCollateral(weth, amountCollateral);
+        console.log("3333333:",amountCollateral, weth);
         vm.stopPrank();
         uint256 collateralBalance = dsce.getCollateralBalanceOfUser(user, weth);
+        console.log(collateralBalance, amountCollateral);
         assertEq(collateralBalance, amountCollateral);
     }
 
