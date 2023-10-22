@@ -274,7 +274,7 @@ contract DSCEngineTest is StdCheats, Test {
 
     function testCanBurnDsc() public depositedCollateralAndMintedDsc {
         vm.startPrank(user);
-        dsc.approve(address(dsce), amountToMint);
+        //dsc.approve(address(dsce), amountToMint);
         dsce.burnDsc(amountToMint);
         vm.stopPrank();
 
